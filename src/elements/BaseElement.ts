@@ -27,11 +27,18 @@ export default class BaseElement implements Instance {
     this.props = props;
   }
 
-  appendChild(_child: BaseElement) {}
+  appendChild(child: BaseElement) {
+    this.node[`add${child.constructor.name}`](child.node);
+  }
 
   removeChild(_child: BaseElement) {}
 
   commitMount() {}
 
-  commitUpdate(_newProps: Props) {}
+  commitUpdate(newProps: Props) {
+    this.props = {
+      ...this.props,
+      ...newProps
+    };
+  }
 }

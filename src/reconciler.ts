@@ -1,4 +1,5 @@
 import ReactReconciler from 'react-reconciler';
+import createElement from './createElement';
 import {
   ChildSet,
   Container,
@@ -32,13 +33,13 @@ export default ReactReconciler<
   NoTimeout
 >({
   createInstance(
-    _type: Type,
-    _props: Props,
+    type: Type,
+    props: Props,
     _rootContainerInstance: Container,
     _hostContext: HostContext
-    // @ts-ignore
   ): Instance {
     log.debug('createInstance');
+    return createElement(type, props);
   },
 
   appendInitialChild(
@@ -128,10 +129,11 @@ export default ReactReconciler<
   },
 
   appendChildToContainer(
-    _container: Container,
-    _child: Instance | TextInstance
+    container: Container,
+    child: Instance | TextInstance
   ): void {
     log.debug('appendChildToContainer');
+    container.appendChild(child);
   },
 
   appendChild(
