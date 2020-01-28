@@ -1,8 +1,8 @@
-import { Page as SketchPage } from 'sketch-constructor';
+import { AttributedString as SketchAttributedString } from 'sketch-constructor';
 import BaseElement from './BaseElement';
 import { Props } from '../types';
 
-export default class Page extends BaseElement {
+export default class AttributedString extends BaseElement {
   static propTypes: object;
 
   static defaultProps: Props;
@@ -10,7 +10,7 @@ export default class Page extends BaseElement {
   constructor(props: Props = {}) {
     const args = { ...props };
     delete args.children;
-    const page = new SketchPage(args);
+    const page = new SketchAttributedString(args);
     super(page, props);
   }
 }

@@ -8,7 +8,9 @@ export default class Artboard extends BaseElement {
   static defaultProps: Props;
 
   constructor(props: Props = {}) {
-    const page = new SketchArtboard({});
+    const args = { ...props };
+    delete args.children;
+    const page = new SketchArtboard(args);
     super(page, props);
   }
 }

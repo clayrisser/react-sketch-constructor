@@ -25,10 +25,21 @@ export default class BaseElement implements Instance {
   constructor(baseNode: BaseNode | BaseNode[], props: Props = {}) {
     this.node = baseNode;
     this.props = props;
+    console.debug(`<${this.constructor.name}`, this.props, '/>');
   }
 
   appendChild(child: BaseElement) {
-    this.node[`add${child.constructor.name}`](child.node);
+    if (child?.constructor?.name) {
+      const addFunctionName = `add${child.constructor.name}`;
+      const add = this.node[addFunctionName];
+      if (typeof add !== 'function') {
+        throw new Error(
+          `<${child.constructor.name} /> is not a valid child for <${this.constructor.name} />
+${this.constructor.name}.${addFunctionName}() is not a valid function`
+        );
+      }
+      this.node[`add${child.constructor.name}`](child.node);
+    }
   }
 
   removeChild(_child: BaseElement) {}

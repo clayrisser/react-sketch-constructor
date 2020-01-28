@@ -1,4 +1,5 @@
 import ReactReconciler from 'react-reconciler';
+import { AttributedString } from './elements';
 import createElement from './createElement';
 import {
   ChildSet,
@@ -43,10 +44,11 @@ export default ReactReconciler<
   },
 
   appendInitialChild(
-    _parentInstance: Instance,
-    _child: Instance | TextInstance
+    parentInstance: Instance,
+    child: Instance | TextInstance
   ): void {
     log.debug('appendInitialChild');
+    parentInstance.appendChild(child);
   },
 
   finalizeInitialChildren(
@@ -61,12 +63,14 @@ export default ReactReconciler<
   },
 
   createTextInstance(
-    _text: string,
+    text: string,
     _rootContainerInstance: Container,
     _hostContext: HostContext
-    // @ts-ignore
   ): TextInstance {
     log.debug('createTextInstance');
+    const attributedString = new AttributedString({ string: text });
+    attributedString.commitMount();
+    return attributedString;
   },
 
   getPublicInstance(instance: Instance | TextInstance): PublicInstance {
@@ -96,6 +100,7 @@ export default ReactReconciler<
 
   resetTextContent(_instance: Instance): void {
     log.debug('resetTextContent');
+    // noop
   },
 
   commitTextUpdate(
@@ -104,6 +109,7 @@ export default ReactReconciler<
     _newText: string
   ): void {
     log.debug('commitTextUpdate');
+    throw new Error('commitTextUpdate should not be called');
   },
 
   removeChild(
@@ -136,15 +142,14 @@ export default ReactReconciler<
     container.appendChild(child);
   },
 
-  appendChild(
-    _parentInstance: Instance,
-    _child: Instance | TextInstance
-  ): void {
+  appendChild(parentInstance: Instance, child: Instance | TextInstance): void {
     log.debug('appendChild');
+    parentInstance.appendChild(child);
   },
 
-  shouldSetTextContent(_type: Type, _props: Props): boolean {
-    log.debug('shouldSetTextContent');
+  shouldSetTextContent(_type: Type, props: Props): boolean {
+    log.debug('shouldSetTextContent', typeof props.children === 'string');
+    if (typeof props.children === 'string') return true;
     return false;
   },
 
