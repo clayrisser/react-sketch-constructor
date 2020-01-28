@@ -44,7 +44,8 @@
   "dependencies": {
     "core-js": "^3.6.4",
     "react": "^16.12.0",
-    "react-reconciler": "^0.24.0"
+    "react-reconciler": "^0.24.0",
+    "sketch-constructor": "^1.16.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.3",

@@ -1,3 +1,10 @@
 declare namespace JSX {
-  interface IntrinsicElements {}
+  // @ts-ignore
+  import { ReactNode, Ref } from 'react';
+
+  interface IntrinsicElements {
+    Page: {
+      ref?: Ref<any>;
+    };
+  }
 }

@@ -1,3 +1,9 @@
-import BaseElement from './BaseElement';
+import BaseElement, { IElement } from './BaseElement';
+import Page from './Page';
 
-export { BaseElement };
+export interface Elements {
+  [key: string]: IElement;
+}
+
+export { BaseElement, Page };
+export default { Page } as Elements;
