@@ -22,5 +22,11 @@ declare namespace JSX {
     AttributedString: {
       children?: ReactNode;
     };
+    Border: {
+      color?: object | string;
+      fillType?: object;
+      position?: object;
+      thickness?: number;
+    };
   }
 }
