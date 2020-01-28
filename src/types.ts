@@ -1,8 +1,8 @@
-export interface BaseNode {
+export interface Options {
   [key: string]: any;
 }
 
-export interface Options {
+export interface BaseNode {
   [key: string]: any;
 }
 
@@ -48,10 +48,6 @@ export interface Instance {
   removeChild(child: Instance | TextInstance): void;
 }
 
-export interface Pkg {
-  [key: string]: any;
-}
-
 export interface Context {
   [key: string]: ContextItem;
 }
@@ -59,3 +55,5 @@ export interface Context {
 export interface Node extends BaseNode {
   body?: BaseNode[];
 }
+
+export interface Node {}

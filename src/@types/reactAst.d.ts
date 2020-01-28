@@ -6,5 +6,8 @@ declare namespace JSX {
     Page: {
       ref?: Ref<any>;
     };
+    Artboard: {
+      ref?: Ref<any>;
+    };
   }
 }

@@ -1,4 +1,7 @@
+import { Sketch } from 'sketch-constructor';
 import { BaseNode, Node, Instance, Props } from '../types';
+
+const sketch = new Sketch();
 
 export interface IElement {
   new (props?: Props): BaseElement;
@@ -10,6 +13,8 @@ export default class BaseElement implements Instance {
   static defaultProps: Props = {};
 
   static propTypes: object = {};
+
+  sketch = sketch;
 
   node: Node;
 
