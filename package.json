@@ -1,0 +1,78 @@
+{
+  "name": "react-sketch-constructor",
+  "version": "0.0.1",
+  "description": "react renderer for sketch",
+  "keywords": [
+    "react-sketch-constructor",
+    "react",
+    "sketch",
+    "renderer",
+    "render",
+    "constructor",
+    "sketch-constructor"
+  ],
+  "homepage": "https://github.com/codejamninja/react-sketch-constructor",
+  "bugs": {
+    "url": "https://github.com/codejamninja/react-sketch-constructor/issues",
+    "email": "jam@codejam.ninja"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Jam Risser",
+    "email": "jam@codejam.ninja",
+    "url": "https://codejam.ninja"
+  },
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codejamninja/react-sketch-constructor"
+  },
+  "scripts": {
+    "build": "npm run test && babel src -d lib --extensions \".ts,.tsx\" --source-maps inline && tsc -d --emitDeclarationOnly",
+    "clean": "git clean -fXd -e \\!node_modules -e \\!node_modules/**/* && jest --clearCache",
+    "clean:purge": "jest --clearCache && git clean -fXd",
+    "format": "prettier --write ./**/*.{json,md,scss,yaml,yml,js,jsx,ts,tsx} --ignore-path .gitignore",
+    "lint": "npm run format && tsc --allowJs --noEmit && eslint --ext .ts,.tsx ./",
+    "lint:fix": "npm run format && tsc --noEmit && eslint --ext .ts,.tsx --fix ./",
+    "prepublish": "npm run build",
+    "start": "babel-node --extensions \".ts,.tsx\" example",
+    "test": "npm run lint && jest"
+  },
+  "dependencies": {
+    "core-js": "^3.6.4",
+    "react": "^16.12.0",
+    "react-reconciler": "^0.24.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/node": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
+    "@types/jest": "^25.1.0",
+    "@types/node": "^13.5.1",
+    "@types/react": "^16.9.19",
+    "@types/react-reconciler": "^0.18.0",
+    "@typescript-eslint/eslint-plugin": "^2.18.0",
+    "@typescript-eslint/parser": "^2.18.0",
+    "babel-plugin-typescript-to-proptypes": "^1.2.1",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-typescript": "^6.3.1",
+    "eslint-config-jam": "^0.2.20",
+    "jest": "^25.1.0",
+    "typescript": "^3.7.5"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "eslintIgnore": [
+    "lib"
+  ],
+  "jest": {
+    "testRegex": "tests(/|/.*/)[^_/]*[jt]sx?$",
+    "verbose": true
+  }
+}
