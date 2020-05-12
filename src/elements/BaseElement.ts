@@ -1,7 +1,4 @@
-import { Sketch } from 'sketch-constructor';
 import { BaseNode, Node, Instance, Props } from '../types';
-
-const sketch = new Sketch();
 
 export interface IElement {
   new (props?: Props): BaseElement;
@@ -13,8 +10,6 @@ export default class BaseElement implements Instance {
   static defaultProps: Props = {};
 
   static propTypes: object = {};
-
-  sketch = sketch;
 
   node: Node;
 
@@ -31,14 +26,16 @@ export default class BaseElement implements Instance {
   appendChild(child: BaseElement) {
     if (child?.constructor?.name) {
       const addFunctionName = `add${child.constructor.name}`;
-      const add = this.node[addFunctionName];
-      if (typeof add !== 'function') {
-        throw new Error(
-          `<${child.constructor.name} /> is not a valid child for <${this.constructor.name} />
+      if (typeof this.node[addFunctionName] !== 'function') {
+        if (typeof this.node.addLayer !== 'function') {
+          throw new Error(
+            `<${child.constructor.name} /> is not a valid child for <${this.constructor.name} />
 ${this.constructor.name}.${addFunctionName}() is not a valid function`
-        );
+          );
+        }
+        return this.node.addLayer(child.node);
       }
-      this.node[`add${child.constructor.name}`](child.node);
+      this.node[addFunctionName](child.node);
     }
   }
 

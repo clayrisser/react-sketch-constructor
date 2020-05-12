@@ -5,6 +5,7 @@ declare namespace JSX {
   interface IntrinsicElements {
     Page: {
       children?: ReactNode;
+      name?: string;
       ref?: Ref<any>;
       style?: object;
     };
@@ -27,6 +28,18 @@ declare namespace JSX {
       fillType?: object;
       position?: object;
       thickness?: number;
+    };
+    Rectangle: {
+      height?: number;
+      name?: string;
+      style?: object;
+      width?: number;
+      x?: number;
+      y?: number;
+    };
+    Text: {
+      frame?: object;
+      style?: object;
     };
   }
 }
