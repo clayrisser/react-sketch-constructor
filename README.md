@@ -6,6 +6,8 @@
 
 Please ★ this repo if you found it useful ★ ★ ★
 
+![](assets/react-sketch-constructor.png)
+
 ## Features
 
 - supports sketch
